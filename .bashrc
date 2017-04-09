@@ -56,8 +56,15 @@ if [ -n "$force_color_prompt" ]; then
     fi
 fi
 
+parse_git_branch() {
+     git branch 2> /dev/null | sed -e '/^[^*]/d' -e 's/* \(.*\)/ [\1]/'
+}
+
 if [ "$color_prompt" = yes ]; then
-    PS1='${debian_chroot:+($debian_chroot)}\[\033[01;32m\]\u@\h\[\033[00m\]:\[\033[01;34m\]\w\[\033[00m\]\$ '
+    maincolor='\e[1;34;49m'
+    defaultcolor='\e[0;39;49m'
+    gitcolor='\e[1;33;49m'
+    PS1="\n$maincolor[\w]$gitcolor\$(parse_git_branch)$defaultcolor\nλ "
 else
     PS1='${debian_chroot:+($debian_chroot)}\u@\h:\w\$ '
 fi

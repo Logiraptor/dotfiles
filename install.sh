@@ -21,3 +21,5 @@ link ./.profile ~/.profile
 
 link ./i3 ~/.config/i3
 link ./compton.conf ~/.config/compton.conf
+
+link ./.gitconfig ~/.gitconfig
