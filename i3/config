@@ -170,26 +170,6 @@ mode "resize" {
 
 bindsym $mod+r mode "resize"
 
-# Start i3bar to display a workspace bar (plus the system information i3status
-# finds out, if available)
-bar {
-    colors {
-        # Whole color settings
-        background #454241
-        statusline #ffffff
-        separator  #ffffff
-
-        # Type             border  background font
-        focused_workspace  #454241 #454241 #ffffff
-        active_workspace   #454241 #454241 #ffffff
-        inactive_workspace #454241 #454241 #888888
-        urgent_workspace   #aa0000 #990000 #ffffff
-    }
-
-    status_command i3status
-    mode hide
-}
-
 # Pulse Audio controls
 bindsym XF86AudioRaiseVolume exec --no-startup-id pactl set-sink-volume 0 +5% #increase sound volume
 bindsym XF86AudioLowerVolume exec --no-startup-id pactl set-sink-volume 0 -5% #decrease sound volume
