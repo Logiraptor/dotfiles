@@ -19,3 +19,8 @@ fi
 # set PATH so it includes user's private bin directories
 
 PATH="$HOME/bin:$HOME/.local/bin:$PATH"
+
+export PATH="$HOME/.cargo/bin:$PATH"
+
+# OPAM configuration
+. /home/patrick/.opam/opam-init/init.sh > /dev/null 2> /dev/null || true
