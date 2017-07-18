@@ -201,25 +201,25 @@ bindsym XF86AudioPrev exec playerctl previous
 bar {
     colors {
         # Whole color settings
-        background #563737
-        statusline #ffffff
-        separator  #ffffff
+        background #b99368
+        statusline #000000
+        separator  #000000
 
         # Type             border  background font
-        focused_workspace  #000000 #e8983c #000000
-        active_workspace   #ffffff #5c566e #ffffff
-        inactive_workspace #000000 #b0a2ac #000000
-        urgent_workspace   #ffffff #a5654b #ffffff
+        focused_workspace  #ffffff #634108 #ffffff
+        active_workspace   #000000 #dadbd5 #000000
+        inactive_workspace #000000 #ab7538 #000000
+        urgent_workspace   #000000 #c7b6a2 #000000
     }
 
     status_command i3status
 }
 
 # class                 border  backgr. text    indicator child_border
-client.focused          #000000 #e8983c #000000 #ffffff #e8983c
-client.focused_inactive #000000 #b0a2ac #000000 #ffffff #b0a2ac
-client.unfocused        #000000 #b0a2ac #000000 #ffffff #b0a2ac
-client.urgent           #ffffff #a5654b #ffffff #ffffff #a5654b
-client.placeholder      #ffffff #a5654b #ffffff #ffffff #a5654b
+client.focused          #ffffff #634108 #ffffff #000000 #634108
+client.focused_inactive #000000 #ab7538 #000000 #000000 #ab7538
+client.unfocused        #000000 #ab7538 #000000 #000000 #ab7538
+client.urgent           #000000 #c7b6a2 #000000 #000000 #c7b6a2
+client.placeholder      #000000 #c7b6a2 #000000 #000000 #c7b6a2
 
-client.background       #563737
+client.background       #b99368
