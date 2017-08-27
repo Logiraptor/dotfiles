@@ -24,3 +24,5 @@ link ./i3status ~/.config/i3status
 link ./compton.conf ~/.config/compton.conf
 
 link ./.gitconfig ~/.gitconfig
+
+link ./brightness.sh ~/bin/brightness.sh

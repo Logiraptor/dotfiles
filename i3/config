@@ -184,8 +184,8 @@ bindsym XF86AudioLowerVolume exec --no-startup-id pactl set-sink-volume 0 -5% #d
 bindsym XF86AudioMute exec --no-startup-id pactl set-sink-mute 0 toggle # mute sound
 
 # Sreen brightness controls
-bindsym XF86MonBrightnessUp exec xbacklight -inc 10 # increase screen brightness
-bindsym XF86MonBrightnessDown exec xbacklight -dec 10 # decrease screen brightness
+bindsym XF86MonBrightnessUp exec brightness.sh up # increase screen brightness
+bindsym XF86MonBrightnessDown exec brightness.sh down # decrease screen brightness
 
 # Touchpad controls
 bindsym XF86TouchpadToggle exec /some/path/toggletouchpad.sh # toggle touchpad
@@ -201,25 +201,25 @@ bindsym XF86AudioPrev exec playerctl previous
 bar {
     colors {
         # Whole color settings
-        background #b99368
-        statusline #000000
-        separator  #000000
+        background #4f5147
+        statusline #ffffff
+        separator  #ffffff
 
         # Type             border  background font
-        focused_workspace  #ffffff #634108 #ffffff
-        active_workspace   #000000 #dadbd5 #000000
-        inactive_workspace #000000 #ab7538 #000000
-        urgent_workspace   #000000 #c7b6a2 #000000
+        focused_workspace  #ffffff #697450 #ffffff
+        active_workspace   #000000 #b2b8b0 #000000
+        inactive_workspace #000000 #959568 #000000
+        urgent_workspace   #000000 #588bbb #000000
     }
 
     status_command i3status
 }
 
 # class                 border  backgr. text    indicator child_border
-client.focused          #ffffff #634108 #ffffff #000000 #634108
-client.focused_inactive #000000 #ab7538 #000000 #000000 #ab7538
-client.unfocused        #000000 #ab7538 #000000 #000000 #ab7538
-client.urgent           #000000 #c7b6a2 #000000 #000000 #c7b6a2
-client.placeholder      #000000 #c7b6a2 #000000 #000000 #c7b6a2
+client.focused          #ffffff #697450 #ffffff #ffffff #697450
+client.focused_inactive #000000 #959568 #000000 #ffffff #959568
+client.unfocused        #000000 #959568 #000000 #ffffff #959568
+client.urgent           #000000 #588bbb #000000 #ffffff #588bbb
+client.placeholder      #000000 #588bbb #000000 #ffffff #588bbb
 
-client.background       #b99368
+client.background       #4f5147
