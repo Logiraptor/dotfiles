@@ -1,4 +1,4 @@
-
+#!/bin/bash
 
 function link {
     src=$(realpath $1)
@@ -26,3 +26,5 @@ link ./compton.conf ~/.config/compton.conf
 link ./.gitconfig ~/.gitconfig
 
 link ./brightness.sh ~/bin/brightness.sh
+
+sudo cp ./brightness-sudoer /etc/sudoers.d/brightness
