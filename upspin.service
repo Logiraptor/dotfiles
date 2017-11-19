@@ -1,0 +1,13 @@
+[Unit]
+Description=Upspin FUSE client
+After=network.target
+
+[Service]
+Type=simple
+User=patrick
+WorkingDirectory=/home/patrick
+ExecStart=/home/patrick/bin/upspinfs /home/patrick/up
+Restart=on-abort
+
+[Install]
+WantedBy=multi-user.target
