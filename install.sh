@@ -26,5 +26,6 @@ link ./compton.conf ~/.config/compton.conf
 link ./.gitconfig ~/.gitconfig
 
 link ./brightness.sh ~/bin/brightness.sh
+link ./t.py ~/tasks/t.py
 
 sudo cp ./brightness-sudoer /etc/sudoers.d/brightness
