@@ -29,4 +29,4 @@ link ./brightness.sh ~/bin/brightness.sh
 link ./t.py ~/tasks/t.py
 
 sudo cp ./brightness-sudoer /etc/sudoers.d/brightness
-cp ./upspin.service /etc/systemd/system/upspin.service
+sudo cp ./upspin.service /etc/systemd/system/upspin.service
