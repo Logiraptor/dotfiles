@@ -1,0 +1,5 @@
+Introduce some kind of general templating system here
+
+Use cases:
+    - i3-config template without color info which gets color info filled in
+    - os-dependent aliases without having to do bash all over

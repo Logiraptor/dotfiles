@@ -14,19 +14,48 @@ function link {
     ln -s $src $target
 }
 
+unameOut="$(uname -s)"
+case "${unameOut}" in
+    Linux*)     machine=Linux;;
+    Darwin*)    machine=Mac;;
+    *)          echo "Unknown HOST OS, defaulting to linux"
+                read -n 1 -p "continue? (y/n): " choice
+                echo
+                if [[ $choice != 'y' ]]; then
+                    exit 1
+                fi
+                machine=Linux
+esac
 
-link ./.bashrc ~/.bashrc
-link ./.bash_aliases ~/.bash_aliases
-link ./.profile ~/.profile
+echo "Installing dotfiles for ${machine}"
 
-link ./i3 ~/.config/i3
-link ./i3status ~/.config/i3status
-link ./compton.conf ~/.config/compton.conf
+function installLinux {
+    link ./.bashrc ~/.bashrc
+    link ./.bash_aliases ~/.aliases
+    link ./.profile ~/.profile
 
-link ./.gitconfig ~/.gitconfig
+    link ./i3 ~/.config/i3
+    link ./i3status ~/.config/i3status
+    link ./compton.conf ~/.config/compton.conf
 
-link ./brightness.sh ~/bin/brightness.sh
-link ./t.py ~/tasks/t.py
+    link ./.gitconfig ~/.gitconfig
 
-sudo cp ./brightness-sudoer /etc/sudoers.d/brightness
-sudo cp ./upspin.service /etc/systemd/system/upspin.service
+    link ./brightness.sh ~/bin/brightness.sh
+    link ./t.py ~/tasks/t.py
+
+    sudo cp ./brightness-sudoer /etc/sudoers.d/brightness
+    sudo cp ./upspin.service /etc/systemd/system/upspin.service
+}
+
+function installMac {
+    link ./.zshrc ~/.zshrc    
+    link ./mac.bash_aliases ~/.aliases
+    
+    mkdir -p ~/tasks
+    link ./t.py ~/tasks/t.py
+    link ./.gitconfig ~/.gitconfig
+
+    brew install wallpaper
+}
+
+install$machine
