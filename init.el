@@ -56,7 +56,8 @@ There are two things you can do about this warning:
 
 (use-package helm
   :config
-  (global-set-key (kbd "M-x") 'helm-M-x))
+  (global-set-key (kbd "M-x") 'helm-M-x)
+  (setq helm-M-x-fuzzy-match t))	; Fuzzy matching in M-x
 
 (use-package magit
   :config
