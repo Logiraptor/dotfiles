@@ -35,6 +35,11 @@ There are two things you can do about this warning:
  ;; If there is more than one, they won't work right.
  '(default ((t (:inherit nil :stipple nil :inverse-video nil :box nil :strike-through nil :overline nil :underline nil :slant normal :weight normal :height 128 :width normal :family "Fira Code")))))
 
+;; Turn on '(i)nteractive-do' stuff
+;; From: https://www.masteringemacs.org/article/introduction-to-ido-mode
+(setq ido-enable-flex-matching t)
+(setq ido-everywhere t)
+(ido-mode 1)
 
 ;; Config adapted from: https://github.com/jwiegley/use-package
 
