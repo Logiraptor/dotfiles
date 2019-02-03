@@ -60,7 +60,10 @@ ZSH_THEME="robbyrussell"
 # Add wisely, as too many plugins slow down shell startup.
 plugins=(
   git
+  zsh-completions
 )
+
+autoload -U compinit && compinit
 
 source $ZSH/oh-my-zsh.sh
 
@@ -104,8 +107,17 @@ export LSCOLORS=ExFxBxDxCxegedabagacad
 export GOPATH=~/dev
 export PATH=$PATH:~/dev/bin:/Users/patrickoyarzun/Library/Python/3.6/bin
 
-# Add RVM to PATH for scripting. Make sure this is the last PATH variable change.
-export PATH="$PATH:$HOME/.rvm/bin"
+eval "$(direnv hook zsh)"
 
 # added by travis gem
 [ -f /Users/patrickoyarzun/.travis/travis.sh ] && source /Users/patrickoyarzun/.travis/travis.sh
+
+eval "$(rbenv init -)"
+
+PATH="$PATH:/Users/patrickoyarzun/Library/Python/2.7/bin"
+
+. /Users/patrickoyarzun/.opam/opam-init/init.zsh > /dev/null 2> /dev/null || true
+
+#THIS MUST BE AT THE END OF THE FILE FOR SDKMAN TO WORK!!!
+export SDKMAN_DIR="/Users/patrickoyarzun/.sdkman"
+[[ -s "/Users/patrickoyarzun/.sdkman/bin/sdkman-init.sh" ]] && source "/Users/patrickoyarzun/.sdkman/bin/sdkman-init.sh"
