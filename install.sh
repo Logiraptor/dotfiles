@@ -51,6 +51,7 @@ function installLinux {
 function installMac {
     link ./.zshrc ~/.zshrc    
     link ./mac.bash_aliases ~/.aliases
+    link ./init.el ~/.emacs.d/init.el
     
     mkdir -p ~/tasks
     link ./t.py ~/tasks/t.py
