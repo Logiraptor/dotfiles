@@ -52,6 +52,10 @@ There are two things you can do about this warning:
 
 (setq inhibit-splash-screen t)
 
+;; Turn off toolbar
+
+(tool-bar-mode -1)
+
 ;; Package declarations
 
 (use-package helm
