@@ -27,7 +27,7 @@ There are two things you can do about this warning:
  ;; Your init file should contain only one such instance.
  ;; If there is more than one, they won't work right.
  '(custom-enabled-themes (quote (tango-dark)))
- '(package-selected-packages (quote (magit helm use-package))))
+ '(package-selected-packages (quote (projectile magit helm use-package))))
 (custom-set-faces
  ;; custom-set-faces was added by Custom.
  ;; If you edit it by hand, you could mess it up, so be careful.
@@ -67,3 +67,9 @@ There are two things you can do about this warning:
   :config
   (global-set-key (kbd "C-x g") 'magit-status))
 
+(use-package projectile
+	     :init
+	     (projectile-mode +1)
+	     :config
+	     (define-key projectile-mode-map (kbd "C-c p") 'projectile-command-map)
+	     (define-key projectile-mode-map (kbd "s-p") 'projectile-command-map))
