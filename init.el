@@ -27,7 +27,9 @@ There are two things you can do about this warning:
  ;; Your init file should contain only one such instance.
  ;; If there is more than one, they won't work right.
  '(custom-enabled-themes (quote (tango-dark)))
- '(package-selected-packages (quote (swiper wgrep ag projectile magit helm use-package))))
+ '(package-selected-packages
+   (quote
+    (company-terraform terraform-mode company swiper wgrep ag projectile magit helm use-package))))
 (custom-set-faces
  ;; custom-set-faces was added by Custom.
  ;; If you edit it by hand, you could mess it up, so be careful.
@@ -90,7 +92,7 @@ There are two things you can do about this warning:
 
 (use-package ag)
 
-;; (use-package wgrep)
+(use-package wgrep)
 
 (use-package swiper
   :init
