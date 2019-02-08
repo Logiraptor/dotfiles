@@ -31,7 +31,7 @@ There are two things you can do about this warning:
  '(ns-command-modifier (quote meta))
  '(package-selected-packages
    (quote
-    (expand-region multiple-cursors company-terraform terraform-mode company swiper wgrep ag projectile magit helm use-package)))
+    (flx-ido expand-region multiple-cursors company-terraform terraform-mode company swiper wgrep ag projectile magit use-package)))
  '(swiper-goto-start-of-match t))
 (custom-set-faces
  ;; custom-set-faces was added by Custom.
@@ -39,12 +39,6 @@ There are two things you can do about this warning:
  ;; Your init file should contain only one such instance.
  ;; If there is more than one, they won't work right.
  '(default ((t (:inherit nil :stipple nil :inverse-video nil :box nil :strike-through nil :overline nil :underline nil :slant normal :weight normal :height 128 :width normal :family "Fira Code")))))
-
-;; Turn on '(i)nteractive-do' stuff
-;; From: https://www.masteringemacs.org/article/introduction-to-ido-mode
-(setq ido-enable-flex-matching t)
-(setq ido-everywhere t)
-(ido-mode 1)
 
 ;; Config adapted from: https://github.com/jwiegley/use-package
 
@@ -65,12 +59,20 @@ There are two things you can do about this warning:
 
 (global-linum-mode)
 
-;; Package declarations
-
-(use-package helm
+;; Turn on '(i)nteractive-do' stuff
+;; From: https://www.masteringemacs.org/article/introduction-to-ido-mode
+(use-package flx-ido
   :config
-  (global-set-key (kbd "M-x") 'helm-M-x)
-  (setq helm-M-x-fuzzy-match t))	; Fuzzy matching in M-x
+  (ido-mode 1)
+  (ido-everywhere 1)
+  (flx-ido-mode 1)
+  (setq ido-enable-flex-matching t)
+  (setq ido-use-faces nil))
+
+;; (use-package helm
+;;   :config
+;;   (global-set-key (kbd "M-x") 'helm-M-x)
+;;   (setq helm-M-x-fuzzy-match t))	; Fuzzy matching in M-x
 
 (use-package magit
   :config
@@ -78,13 +80,15 @@ There are two things you can do about this warning:
 
 (use-package projectile
 	     :config
-	     (projectile-mode +1)
+	     (projectile-global-mode)
+	     (setq projectile-sort-order 'recently-active)
+	     (setq projectile-enable-caching t)
 	     (define-key projectile-mode-map (kbd "C-c p") 'projectile-command-map)
 	     (define-key projectile-mode-map (kbd "s-p") 'projectile-command-map))
 
 (use-package company
   :config
-  (company-mode)
+  (global-company-mode)
   (global-set-key (kbd "C-.") 'company-complete))
 
 (use-package terraform-mode)
@@ -97,7 +101,7 @@ There are two things you can do about this warning:
 
 (use-package swiper
   :config
-  (ivy-mode)
+  (setq swiper-goto-start-of-match t)
   (global-set-key "\C-s" 'swiper))
 
 (use-package expand-region
