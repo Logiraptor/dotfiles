@@ -31,7 +31,7 @@ There are two things you can do about this warning:
  '(ns-command-modifier (quote meta))
  '(package-selected-packages
    (quote
-    (flx-ido expand-region multiple-cursors company-terraform terraform-mode company swiper wgrep ag projectile magit use-package)))
+    (ido-vertical-mode smex flx-ido expand-region multiple-cursors company-terraform terraform-mode company swiper wgrep ag projectile magit use-package)))
  '(swiper-goto-start-of-match t))
 (custom-set-faces
  ;; custom-set-faces was added by Custom.
@@ -66,13 +66,21 @@ There are two things you can do about this warning:
   (ido-mode 1)
   (ido-everywhere 1)
   (flx-ido-mode 1)
-  (setq ido-enable-flex-matching t)
-  (setq ido-use-faces nil))
+  (setq ido-enable-flex-matching t))
 
-;; (use-package helm
-;;   :config
-;;   (global-set-key (kbd "M-x") 'helm-M-x)
-;;   (setq helm-M-x-fuzzy-match t))	; Fuzzy matching in M-x
+(use-package smex
+  :config
+  (smex-initialize)
+  (global-set-key (kbd "M-x") 'smex))
+
+(use-package ido-vertical-mode
+  :config
+  (ido-vertical-mode 1)
+  (setq ido-vertical-define-keys 'C-n-and-C-p-only)
+  (setq ido-use-faces t)
+  (set-face-attribute 'ido-vertical-first-match-face nil
+                    :background (face-attribute 'highlight :background)
+                    :foreground (face-attribute 'highlight :foreground)))
 
 (use-package magit
   :config
