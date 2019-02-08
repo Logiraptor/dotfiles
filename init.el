@@ -31,7 +31,7 @@ There are two things you can do about this warning:
  '(ns-command-modifier (quote meta))
  '(package-selected-packages
    (quote
-    (company-terraform terraform-mode company swiper wgrep ag projectile magit helm use-package)))
+    (expand-region multiple-cursors company-terraform terraform-mode company swiper wgrep ag projectile magit helm use-package)))
  '(swiper-goto-start-of-match t))
 (custom-set-faces
  ;; custom-set-faces was added by Custom.
@@ -77,16 +77,14 @@ There are two things you can do about this warning:
   (global-set-key (kbd "C-x g") 'magit-status))
 
 (use-package projectile
-	     :init
-	     (projectile-mode +1)
 	     :config
+	     (projectile-mode +1)
 	     (define-key projectile-mode-map (kbd "C-c p") 'projectile-command-map)
 	     (define-key projectile-mode-map (kbd "s-p") 'projectile-command-map))
 
 (use-package company
-  :init
-  (company-mode)
   :config
+  (company-mode)
   (global-set-key (kbd "C-.") 'company-complete))
 
 (use-package terraform-mode)
@@ -98,10 +96,21 @@ There are two things you can do about this warning:
 (use-package wgrep)
 
 (use-package swiper
-  :init
-  (ivy-mode)
   :config
+  (ivy-mode)
   (global-set-key "\C-s" 'swiper))
+
+(use-package expand-region
+  :config
+  (global-set-key (kbd "M-p") 'er/expand-region))
+
+(use-package multiple-cursors
+  :config
+  (global-set-key (kbd "M-I") 'mc/edit-lines)
+  (global-set-key (kbd "C->") 'mc/mark-next-like-this)
+  (global-set-key (kbd "C-<") 'mc/mark-previous-like-this)
+  (global-set-key (kbd "C-C C->") 'mc/mark-all-like-this))
+
 
 
 ;; Useful functions
@@ -138,4 +147,5 @@ There are two things you can do about this warning:
 
 (global-set-key (kbd "C-S-n") 'oyarzun/move-line-down)
 (global-set-key (kbd "C-S-p") 'oyarzun/move-line-up)
+
 
