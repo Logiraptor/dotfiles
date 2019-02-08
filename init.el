@@ -27,9 +27,12 @@ There are two things you can do about this warning:
  ;; Your init file should contain only one such instance.
  ;; If there is more than one, they won't work right.
  '(custom-enabled-themes (quote (tango-dark)))
+ '(ns-alternate-modifier (quote super))
+ '(ns-command-modifier (quote meta))
  '(package-selected-packages
    (quote
-    (company-terraform terraform-mode company swiper wgrep ag projectile magit helm use-package))))
+    (company-terraform terraform-mode company swiper wgrep ag projectile magit helm use-package)))
+ '(swiper-goto-start-of-match t))
 (custom-set-faces
  ;; custom-set-faces was added by Custom.
  ;; If you edit it by hand, you could mess it up, so be careful.
@@ -99,3 +102,40 @@ There are two things you can do about this warning:
   (ivy-mode)
   :config
   (global-set-key "\C-s" 'swiper))
+
+
+;; Useful functions
+
+(defun oyarzun/duplicate-line ()
+  (interactive)
+  (let ((col (current-column)))
+    (move-beginning-of-line 1)
+    (kill-line)
+    (yank)
+    (newline)
+    (yank)
+    (move-to-column col)))
+
+(global-set-key (kbd "C-S-d") 'oyarzun/duplicate-line)
+
+(defun oyarzun/move-line-down ()
+  (interactive)
+  (let ((col (current-column)))
+    (save-excursion
+      (forward-line)
+      (transpose-lines 1))
+    (forward-line)
+    (move-to-column col)))
+
+(defun oyarzun/move-line-up ()
+  (interactive)
+  (let ((col (current-column)))
+    (save-excursion
+      (forward-line)
+      (transpose-lines -1))
+    (forward-line -1)
+    (move-to-column col)))
+
+(global-set-key (kbd "C-S-n") 'oyarzun/move-line-down)
+(global-set-key (kbd "C-S-p") 'oyarzun/move-line-up)
+
