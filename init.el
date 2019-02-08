@@ -68,7 +68,13 @@ There are two things you can do about this warning:
   ;; (flx-ido-mode 1)
   ;; (setq ido-enable-flex-matching t))
 
-(use-package flx)
+;; Add to remote path in TRAMP from (https://github.com/jvshahid/emacs-config/blob/7d777f5a6d8da3af119ac1228b0b6cf34ba33aba/emacs.d/lisp/conf-tramp.el#L3-L5)
+
+(with-eval-after-load 'tramp
+;;  (push "~/.fzf/bin" tramp-remote-path)
+  (push "~/bin" tramp-remote-path))
+
+;; Package declarations
 
 (use-package smex
   :config
@@ -94,6 +100,29 @@ There are two things you can do about this warning:
 (use-package magit
   :config
   (global-set-key (kbd "C-x g") 'magit-status))
+
+;; Add git ci support (from https://github.com/jvshahid/emacs-config/blob/7d777f5a6d8da3af119ac1228b0b6cf34ba33aba/emacs.d/lisp/conf-magit.el#L10-L28)
+
+(with-eval-after-load 'magit
+  (add-hook 'magit-mode-hook '(lambda ()
+                                (setq show-trailing-whitespace nil)))
+  (setq
+   auto-revert-buffer-list-filter 'magit-auto-revert-repository-buffers-p)
+  (magit-define-popup-action 'magit-commit-popup ?i "Commit using ci" 'magit-ci-create ?c t))
+
+(defun magit-ci-create (&optional args)
+  "Create a new commit on `HEAD' using `ci'.
+With a prefix argument, amend to the commit at `HEAD' instead.
+\n(git commit [--amend] ARGS)"
+  (interactive (if current-prefix-arg
+                   (list (cons "--amend" (magit-commit-arguments)))
+                 (list (magit-commit-arguments))))
+  (when (member "--all" args)
+    (setq this-command 'magit-commit-all))
+  (when (setq args (magit-commit-assert args))
+    (let ((default-directory (magit-toplevel)))
+      (magit-run-git-with-editor "ci" args))))
+
 
 (use-package projectile
 	     :config
