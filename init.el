@@ -31,7 +31,7 @@ There are two things you can do about this warning:
  '(ns-command-modifier (quote meta))
  '(package-selected-packages
    (quote
-    (ido-vertical-mode smex flx-ido expand-region multiple-cursors company-terraform terraform-mode company swiper wgrep ag projectile magit use-package)))
+    (counsel ido-vertical-mode smex flx-ido expand-region multiple-cursors company-terraform terraform-mode company swiper wgrep ag projectile magit use-package)))
  '(swiper-goto-start-of-match t))
 (custom-set-faces
  ;; custom-set-faces was added by Custom.
@@ -61,26 +61,35 @@ There are two things you can do about this warning:
 
 ;; Turn on '(i)nteractive-do' stuff
 ;; From: https://www.masteringemacs.org/article/introduction-to-ido-mode
-(use-package flx-ido
-  :config
-  (ido-mode 1)
-  (ido-everywhere 1)
-  (flx-ido-mode 1)
-  (setq ido-enable-flex-matching t))
+;; (use-package flx-ido
+  ;; :config
+  ;; (ido-mode 1)
+  ;; (ido-everywhere 1)
+  ;; (flx-ido-mode 1)
+  ;; (setq ido-enable-flex-matching t))
+
+(use-package flx)
 
 (use-package smex
   :config
-  (smex-initialize)
-  (global-set-key (kbd "M-x") 'smex))
+  (smex-initialize))
 
-(use-package ido-vertical-mode
+(use-package counsel
   :config
-  (ido-vertical-mode 1)
-  (setq ido-vertical-define-keys 'C-n-and-C-p-only)
-  (setq ido-use-faces t)
-  (set-face-attribute 'ido-vertical-first-match-face nil
-                    :background (face-attribute 'highlight :background)
-                    :foreground (face-attribute 'highlight :foreground)))
+  (setq ivy-use-virtual-buffers t)
+  (setq ivy-re-builders-alist
+	'((t . ivy--regex-fuzzy)))
+  (ivy-mode)
+  (counsel-mode))
+
+;; (use-package ido-vertical-mode
+;;   :config
+;;   (ido-vertical-mode 1)
+;;   (setq ido-vertical-define-keys 'C-n-and-C-p-only)
+;;   (setq ido-use-faces t)
+;;   (set-face-attribute 'ido-vertical-first-match-face nil
+;;                     :background (face-attribute 'highlight :background)
+;;                     :foreground (face-attribute 'highlight :foreground)))
 
 (use-package magit
   :config
@@ -89,6 +98,7 @@ There are two things you can do about this warning:
 (use-package projectile
 	     :config
 	     (projectile-global-mode)
+	     (setq projectile-completion-system 'ivy)
 	     (setq projectile-sort-order 'recently-active)
 	     (setq projectile-enable-caching t)
 	     (define-key projectile-mode-map (kbd "C-c p") 'projectile-command-map)
