@@ -47,19 +47,9 @@
 
 (global-linum-mode)
 
-;; Turn on '(i)nteractive-do' stuff
-;; From: https://www.masteringemacs.org/article/introduction-to-ido-mode
-;; (use-package flx-ido
-;; :config
-;; (ido-mode 1)
-;; (ido-everywhere 1)
-;; (flx-ido-mode 1)
-;; (setq ido-enable-flex-matching t))
-
 ;; Add to remote path in TRAMP from (https://github.com/jvshahid/emacs-config/blob/7d777f5a6d8da3af119ac1228b0b6cf34ba33aba/emacs.d/lisp/conf-tramp.el#L3-L5)
 
 (with-eval-after-load 'tramp
-  ;;  (push "~/.fzf/bin" tramp-remote-path)
   (push "~/bin" tramp-remote-path))
 
 ;; Package declarations
@@ -76,15 +66,6 @@
   (setq ivy-re-builders-alist '((t . ivy--regex-fuzzy)))
   (ivy-mode)
   (counsel-mode))
-
-;; (use-package ido-vertical-mode
-;;   :config
-;;   (ido-vertical-mode 1)
-;;   (setq ido-vertical-define-keys 'C-n-and-C-p-only)
-;;   (setq ido-use-faces t)
-;;   (set-face-attribute 'ido-vertical-first-match-face nil
-;;                     :background (face-attribute 'highlight :background)
-;;                     :foreground (face-attribute 'highlight :foreground)))
 
 (use-package magit
   :config
