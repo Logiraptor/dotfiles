@@ -33,7 +33,7 @@ function installLinux {
     link ./.bashrc ~/.bashrc
     link ./.bash_aliases ~/.aliases
     link ./.profile ~/.profile
-    link ./init.el ~/.emacs.d/init.el
+    link ./.emacs.d/ ~/.emacs.d/
 
     link ./i3 ~/.config/i3
     link ./i3status ~/.config/i3status
@@ -51,7 +51,7 @@ function installLinux {
 function installMac {
     link ./.zshrc ~/.zshrc    
     link ./mac.bash_aliases ~/.aliases
-    link ./init.el ~/.emacs.d/init.el
+    link ./.emacs.d/ ~/.emacs.d/
     
     mkdir -p ~/tasks
     link ./t.py ~/tasks/t.py
