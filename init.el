@@ -158,7 +158,8 @@ With a prefix argument, amend to the commit at `HEAD' instead.
 
 (use-package expand-region
   :config
-  (global-set-key (kbd "M-p") 'er/expand-region))
+  (global-set-key (kbd "M-p") 'er/expand-region)
+  (global-set-key (kbd "M-n") 'er/contract-region))
 
 (use-package multiple-cursors
   :config
@@ -187,5 +188,9 @@ With a prefix argument, amend to the commit at `HEAD' instead.
   :config        ;TODO: make it expand the region to the full line (shahid says advice is a thing)
   (global-set-key (kbd "C-S-n") 'move-text-down)
   (global-set-key (kbd "C-S-p") 'move-text-up))
+
+
+(scroll-bar-mode -1)
+
 
 
