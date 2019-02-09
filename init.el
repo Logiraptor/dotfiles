@@ -31,7 +31,7 @@ There are two things you can do about this warning:
  '(ns-command-modifier (quote meta))
  '(package-selected-packages
    (quote
-    (counsel ido-vertical-mode smex flx-ido expand-region multiple-cursors company-terraform terraform-mode company swiper wgrep ag projectile magit use-package)))
+    (parinfer parinfer-mode move-text flx counsel ido-vertical-mode smex flx-ido expand-region multiple-cursors company-terraform terraform-mode company swiper wgrep ag projectile magit use-package)))
  '(swiper-goto-start-of-match t))
 (custom-set-faces
  ;; custom-set-faces was added by Custom.
@@ -62,19 +62,21 @@ There are two things you can do about this warning:
 ;; Turn on '(i)nteractive-do' stuff
 ;; From: https://www.masteringemacs.org/article/introduction-to-ido-mode
 ;; (use-package flx-ido
-  ;; :config
-  ;; (ido-mode 1)
-  ;; (ido-everywhere 1)
-  ;; (flx-ido-mode 1)
-  ;; (setq ido-enable-flex-matching t))
+;; :config
+;; (ido-mode 1)
+;; (ido-everywhere 1)
+;; (flx-ido-mode 1)
+;; (setq ido-enable-flex-matching t))
 
 ;; Add to remote path in TRAMP from (https://github.com/jvshahid/emacs-config/blob/7d777f5a6d8da3af119ac1228b0b6cf34ba33aba/emacs.d/lisp/conf-tramp.el#L3-L5)
 
 (with-eval-after-load 'tramp
-;;  (push "~/.fzf/bin" tramp-remote-path)
+  ;;  (push "~/.fzf/bin" tramp-remote-path)
   (push "~/bin" tramp-remote-path))
 
 ;; Package declarations
+
+(use-package flx)
 
 (use-package smex
   :config
@@ -83,8 +85,7 @@ There are two things you can do about this warning:
 (use-package counsel
   :config
   (setq ivy-use-virtual-buffers t)
-  (setq ivy-re-builders-alist
-	'((t . ivy--regex-fuzzy)))
+  (setq ivy-re-builders-alist '((t . ivy--regex-fuzzy)))
   (ivy-mode)
   (counsel-mode))
 
@@ -99,39 +100,43 @@ There are two things you can do about this warning:
 
 (use-package magit
   :config
-  (global-set-key (kbd "C-x g") 'magit-status))
+  (global-set-key (kbd "C-x g") 'magit-status)
+  ;; Add git ci support (from https://github.com/jvshahid/emacs-config/blob/7d777f5a6d8da3af119ac1228b0b6cf34ba33aba/emacs.d/lisp/conf-magit.el#L10-L28)
 
-;; Add git ci support (from https://github.com/jvshahid/emacs-config/blob/7d777f5a6d8da3af119ac1228b0b6cf34ba33aba/emacs.d/lisp/conf-magit.el#L10-L28)
-
-(with-eval-after-load 'magit
-  (add-hook 'magit-mode-hook '(lambda ()
-                                (setq show-trailing-whitespace nil)))
+  (add-hook 'magit-mode-hook '(lambda ())
+      (setq show-trailing-whitespace nil))
   (setq
    auto-revert-buffer-list-filter 'magit-auto-revert-repository-buffers-p)
-  (magit-define-popup-action 'magit-commit-popup ?i "Commit using ci" 'magit-ci-create ?c t))
+  (magit-define-popup-action 'magit-commit-popup ?i "Commit using ci" 'magit-ci-create ?c t)
 
-(defun magit-ci-create (&optional args)
-  "Create a new commit on `HEAD' using `ci'.
+  (defun magit-ci-create (&optional args)
+    "Create a new commit on `HEAD' using `ci'.
 With a prefix argument, amend to the commit at `HEAD' instead.
 \n(git commit [--amend] ARGS)"
-  (interactive (if current-prefix-arg
-                   (list (cons "--amend" (magit-commit-arguments)))
-                 (list (magit-commit-arguments))))
-  (when (member "--all" args)
-    (setq this-command 'magit-commit-all))
-  (when (setq args (magit-commit-assert args))
-    (let ((default-directory (magit-toplevel)))
-      (magit-run-git-with-editor "ci" args))))
+    (interactive
+     (if current-prefix-arg
+       (list (cons "--amend" (magit-commit-arguments)))
+       (list (magit-commit-arguments))))
+    (when (member "--all" args)
+      (setq this-command 'magit-commit-all))
+    (when (setq args (magit-commit-assert args))
+      (let ((default-directory (magit-toplevel)))
+        (magit-run-git-with-editor "ci" args)))))
 
+(use-package parinfer
+  :bind
+  (("C-," . parinfer-toggle-mode))
+  :config
+  (setq parinfer-extensions '(defaults pretty-parens smart-tab)))
 
 (use-package projectile
-	     :config
-	     (projectile-global-mode)
-	     (setq projectile-completion-system 'ivy)
-	     (setq projectile-sort-order 'recently-active)
-	     (setq projectile-enable-caching t)
-	     (define-key projectile-mode-map (kbd "C-c p") 'projectile-command-map)
-	     (define-key projectile-mode-map (kbd "s-p") 'projectile-command-map))
+  :config
+  (projectile-global-mode)
+  (setq projectile-completion-system 'ivy)
+  (setq projectile-sort-order 'recently-active)
+  (setq projectile-enable-caching t)
+  (define-key projectile-mode-map (kbd "C-c p") 'projectile-command-map)
+  (define-key projectile-mode-map (kbd "s-p") 'projectile-command-map))
 
 (use-package company
   :config
@@ -178,25 +183,9 @@ With a prefix argument, amend to the commit at `HEAD' instead.
 
 (global-set-key (kbd "C-S-d") 'oyarzun/duplicate-line)
 
-(defun oyarzun/move-line-down ()
-  (interactive)
-  (let ((col (current-column)))
-    (save-excursion
-      (forward-line)
-      (transpose-lines 1))
-    (forward-line)
-    (move-to-column col)))
-
-(defun oyarzun/move-line-up ()
-  (interactive)
-  (let ((col (current-column)))
-    (save-excursion
-      (forward-line)
-      (transpose-lines -1))
-    (forward-line -1)
-    (move-to-column col)))
-
-(global-set-key (kbd "C-S-n") 'oyarzun/move-line-down)
-(global-set-key (kbd "C-S-p") 'oyarzun/move-line-up)
+(use-package move-text
+  :config        ;TODO: make it expand the region to the full line (shahid says advice is a thing)
+  (global-set-key (kbd "C-S-n") 'move-text-down)
+  (global-set-key (kbd "C-S-p") 'move-text-up))
 
 
