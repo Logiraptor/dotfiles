@@ -17,8 +17,7 @@
 (load-custom "custom-magit.el")
 (load-custom "custom-tramp.el")
 (load-custom "custom-lang-terraform.el")
+(load-custom "custom-lang-elisp.el")
 (load-custom "custom-helpers.el")
 
 
-
-;; TODO: Consider 'copy line when no selection' http://ergoemacs.org/emacs/emacs_copy_cut_current_line.html

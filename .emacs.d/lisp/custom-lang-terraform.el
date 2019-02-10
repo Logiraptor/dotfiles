@@ -1,3 +1,5 @@
 (use-package terraform-mode)
 
-(use-package company-terraform)
+(lazy-lang terraform-mode-hook
+     (use-package company-terraform))
+

@@ -8,3 +8,7 @@
 (require 'use-package)
 (setq use-package-always-ensure t)
 
+(defmacro lazy-lang (hook &rest body)
+  "Register code to run when a major mode is activated"
+  (list 'add-hook (list 'quote hook)
+    (cons 'lambda (cons () body))))
