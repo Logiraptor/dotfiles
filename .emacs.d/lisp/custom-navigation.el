@@ -1,4 +1,11 @@
-;; Navigation
+;; Scroll Behavior
+
+(setq scroll-margin 10
+      scroll-step 1
+      scroll-conservatively 10000
+      scroll-preserve-screen-position 1)
+
+;; Navigation Packages
 
 (use-package flx)
 

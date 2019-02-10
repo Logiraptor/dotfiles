@@ -22,4 +22,3 @@
 
 
 ;; TODO: Consider 'copy line when no selection' http://ergoemacs.org/emacs/emacs_copy_cut_current_line.html
-;; TODO: get smarter scroll behavior from wolfe's literate config
