@@ -5,4 +5,9 @@
 (global-linum-mode)
 (setq inhibit-splash-screen t)
 
+(use-package diminish
+  :config
+  (diminish 'auto-revert-mode)
+  (diminish 'eldoc-mode))
 
+(use-package delight)

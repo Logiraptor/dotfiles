@@ -7,13 +7,16 @@
   (smex-initialize))
 
 (use-package counsel
+  :diminish
   :config
+  (diminish 'ivy-mode)
   (setq ivy-use-virtual-buffers t)
   (setq ivy-re-builders-alist '((t . ivy--regex-fuzzy)))
   (ivy-mode)
   (counsel-mode))
 
 (use-package projectile
+  :delight '(:eval (concat " ~:" (projectile-project-name)))
   :config
   (projectile-global-mode)
   (setq projectile-completion-system 'ivy)

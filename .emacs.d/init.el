@@ -1,4 +1,6 @@
 
+(add-to-list 'load-path "~/.emacs.d/lisp/vendor")
+
 (setq custom-file "~/.emacs.d/lisp/custom.el")
 (load custom-file)
 
@@ -15,10 +17,9 @@
 (load-custom "custom-magit.el")
 (load-custom "custom-tramp.el")
 (load-custom "custom-lang-terraform.el")
+(load-custom "custom-helpers.el")
 
 
-;; TODO: Investigate move-lines, crux
-;; Add which-key
-;; TODO: use diminish to clean up that mode line (use-package has an integration)
+
 ;; TODO: Consider 'copy line when no selection' http://ergoemacs.org/emacs/emacs_copy_cut_current_line.html
 ;; TODO: get smarter scroll behavior from wolfe's literate config

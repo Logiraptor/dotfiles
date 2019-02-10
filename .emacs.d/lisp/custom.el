@@ -9,7 +9,7 @@
  '(ns-command-modifier (quote meta))
  '(package-selected-packages
    (quote
-    (parinfer parinfer-mode move-text flx counsel ido-vertical-mode smex flx-ido expand-region multiple-cursors company-terraform terraform-mode company swiper wgrep ag projectile magit use-package)))
+    (delight diminish move-lines crux rainbow-mode which-key parinfer parinfer-mode move-text flx counsel ido-vertical-mode smex flx-ido expand-region multiple-cursors company-terraform terraform-mode company swiper wgrep ag projectile magit use-package)))
  '(swiper-goto-start-of-match t))
 
 (custom-set-faces

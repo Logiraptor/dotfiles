@@ -1,11 +1,13 @@
+
 (use-package parinfer
-  :bind
-  (("C-," . parinfer-toggle-mode))
+  :bind (("C-," . parinfer-toggle-mode))
   :config
-  (setq parinfer-extensions '(defaults pretty-parens smart-tab)))
+  (setq parinfer-extensions '(defaults pretty-parens smart-tab))
+  (parinfer-mode))
   ;; :mode ("\\.el\\" . parinfer-mode))
 
 (use-package company
+  :diminish
   :config
   (global-company-mode)
   :bind  (("C-." . 'company-complete)))
@@ -36,9 +38,14 @@
 
 (global-set-key (kbd "C-S-d") 'oyarzun/duplicate-line)
 
-(use-package move-text
-  :config        ;TODO: make it expand the region to the full line (shahid says advice is a thing)
-  :bind  (("C-S-n" . 'move-text-down)
-          ("C-S-p" . 'move-text-up)))
+(require 'move-lines)
+
+(with-eval-after-load 'move-lines
+  (global-set-key (kbd "C-S-n") 'move-lines-down)
+  (global-set-key (kbd "C-S-p") 'move-lines-up))
 
 (use-package wgrep)
+
+(use-package crux
+  :bind (("C-a" . crux-move-beginning-of-line)))
+
