@@ -16,8 +16,8 @@
 (load-custom "custom-visuals.el")
 (load-custom "custom-magit.el")
 (load-custom "custom-tramp.el")
+(load-custom "custom-helpers.el")
 (load-custom "custom-lang-terraform.el")
 (load-custom "custom-lang-elisp.el")
-(load-custom "custom-helpers.el")
-
+(load-custom "custom-lang-yaml.el")
 

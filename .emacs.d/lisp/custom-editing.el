@@ -29,13 +29,13 @@
     (yank)
     (move-to-column col)))
 
-(global-set-key (kbd "C-S-d") 'oyarzun/duplicate-line)
+(bind-key "C-S-d" 'oyarzun/duplicate-line)
 
 (require 'move-lines)
 
 (with-eval-after-load 'move-lines
-  (global-set-key (kbd "C-S-n") 'move-lines-down)
-  (global-set-key (kbd "C-S-p") 'move-lines-up))
+  (bind-key "C-S-n" 'move-lines-down)
+  (bind-key "C-S-p" 'move-lines-up))
 
 (use-package wgrep)
 

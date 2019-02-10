@@ -15,6 +15,7 @@
 
 (use-package counsel
   :diminish
+  :bind (("C-c C-r" . 'ivy-resume))
   :config
   (diminish 'ivy-mode)
   (setq ivy-use-virtual-buffers t)
@@ -29,8 +30,9 @@
   (setq projectile-completion-system 'ivy)
   (setq projectile-sort-order 'recently-active)
   (setq projectile-enable-caching t)
-  (define-key projectile-mode-map (kbd "C-c p") 'projectile-command-map)
-  (define-key projectile-mode-map (kbd "s-p") 'projectile-command-map))
+  (setq projectile-use-git-grep t)
+  :bind-keymap
+  ("C-c p" . projectile-command-map))
 
 (use-package swiper
   :config
