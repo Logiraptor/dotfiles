@@ -12,3 +12,8 @@
   "Register code to run when a major mode is activated"
   (list 'add-hook (list 'quote hook)
     (cons 'lambda (cons () body))))
+
+
+(use-package use-package-chords
+  :ensure t
+  :config (key-chord-mode 1))

@@ -1,3 +1,7 @@
+;; To debug startup time:
+;; $ emacs -l ~/.emacs.d/init.el -batch --eval '(message "FINISHED")' 2>&1 | ts '[%Y-%m-%d %H:%M:%.S]' | grep -E 'Loading|FINISHED'
+;; This line requires the moreutils package (for ts)
+
 
 (add-to-list 'load-path "~/.emacs.d/lisp/vendor")
 

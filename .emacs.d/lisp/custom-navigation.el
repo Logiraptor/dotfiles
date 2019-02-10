@@ -34,7 +34,8 @@
   (setq projectile-use-git-grep t)
   (setq projectile-project-search-path '("~/workspace" "~/dev/src/github.com/Logiraptor"))
   :bind-keymap
-  ("C-c p" . projectile-command-map))
+  ("C-c p" . projectile-command-map)
+  :chords (("pk" . projectile-command-map)))
 
 (use-package swiper
   :config

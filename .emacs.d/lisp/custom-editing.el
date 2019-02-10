@@ -2,6 +2,9 @@
 (use-package company
   :diminish
   :config
+  (use-package company-flx
+    :config
+    (company-flx-mode))
   (global-company-mode)
   :bind  (("C-." . 'company-complete)))
 
