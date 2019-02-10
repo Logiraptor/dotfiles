@@ -1,4 +1,11 @@
-*
-!.gitignore
-!init.el
-!lisp/
+tramp
+eshell/
+elpa/
+projectile.cache
+projectile-bookmarks.eld
+*.elc
+smex-items
+recentf
+ido.last
+.emacs.desktop*
+.mc-lists.el
