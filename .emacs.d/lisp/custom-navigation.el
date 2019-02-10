@@ -20,6 +20,7 @@
   (diminish 'ivy-mode)
   (setq ivy-use-virtual-buffers t)
   (setq ivy-re-builders-alist '((t . ivy--regex-fuzzy)))
+  (setq ivy-initial-inputs-alist nil)
   (ivy-mode)
   (counsel-mode))
 
@@ -31,6 +32,7 @@
   (setq projectile-sort-order 'recently-active)
   (setq projectile-enable-caching t)
   (setq projectile-use-git-grep t)
+  (setq projectile-project-search-path '("~/workspace" "~/dev/src/github.com/Logiraptor"))
   :bind-keymap
   ("C-c p" . projectile-command-map))
 
