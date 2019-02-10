@@ -68,14 +68,10 @@
   (counsel-mode))
 
 (use-package magit
+  :bind (("C-x g" . 'magit-status))
   :config
-  (global-set-key (kbd "C-x g") 'magit-status)
   ;; Add git ci support (from https://github.com/jvshahid/emacs-config/blob/7d777f5a6d8da3af119ac1228b0b6cf34ba33aba/emacs.d/lisp/conf-magit.el#L10-L28)
 
-  (add-hook 'magit-mode-hook '(lambda ())
-      (setq show-trailing-whitespace nil))
-  (setq
-   auto-revert-buffer-list-filter 'magit-auto-revert-repository-buffers-p)
   (magit-define-popup-action 'magit-commit-popup ?i "Commit using ci" 'magit-ci-create ?c t)
 
   (defun magit-ci-create (&optional args)
@@ -110,7 +106,8 @@ With a prefix argument, amend to the commit at `HEAD' instead.
 (use-package company
   :config
   (global-company-mode)
-  (global-set-key (kbd "C-.") 'company-complete))
+  :bind  (("C-." . 'company-complete)))
+
 
 (use-package terraform-mode)
 
@@ -123,21 +120,19 @@ With a prefix argument, amend to the commit at `HEAD' instead.
 (use-package swiper
   :config
   (setq swiper-goto-start-of-match t)
-  (global-set-key "\C-s" 'swiper))
+  :bind  (("\C-s" . 'swiper)))
 
 (use-package expand-region
   :config
-  (global-set-key (kbd "M-p") 'er/expand-region)
-  (global-set-key (kbd "M-n") 'er/contract-region))
+  :bind  (("M-p" . 'er/expand-region)
+          ("M-n" . 'er/contract-region)))
 
 (use-package multiple-cursors
   :config
-  (global-set-key (kbd "M-I") 'mc/edit-lines)
-  (global-set-key (kbd "C->") 'mc/mark-next-like-this)
-  (global-set-key (kbd "C-<") 'mc/mark-previous-like-this)
-  (global-set-key (kbd "C-C C->") 'mc/mark-all-like-this))
-
-
+  :bind  (("M-I" . 'mc/edit-lines)
+          ("C->" . 'mc/mark-next-like-this)
+          ("C-<" . 'mc/mark-previous-like-this)
+          ("C-C C->" . 'mc/mark-all-like-this)))
 
 ;; Useful functions
 
@@ -155,9 +150,8 @@ With a prefix argument, amend to the commit at `HEAD' instead.
 
 (use-package move-text
   :config        ;TODO: make it expand the region to the full line (shahid says advice is a thing)
-  (global-set-key (kbd "C-S-n") 'move-text-down)
-  (global-set-key (kbd "C-S-p") 'move-text-up))
-
+  :bind  (("C-S-n" . 'move-text-down)
+          ("C-S-p" . 'move-text-up)))
 
 (scroll-bar-mode -1)
 
