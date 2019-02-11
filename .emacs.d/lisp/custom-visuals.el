@@ -5,9 +5,16 @@
 (global-linum-mode)
 (setq inhibit-splash-screen t)
 
-(use-package diminish
-  :config
-  (diminish 'auto-revert-mode)
-  (diminish 'eldoc-mode))
+(use-package all-the-icons)
 
-(use-package delight)
+(use-package doom-themes
+  :config
+  (load-theme 'doom-spacegrey t))
+
+(use-package doom-modeline
+  :hook (after-init . doom-modeline-mode)
+  :config
+  (setq doom-modeline-buffer-file-name-style 'relative-from-project))
+
+
+

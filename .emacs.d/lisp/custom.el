@@ -4,12 +4,11 @@
  ;; If you edit it by hand, you could mess it up, so be careful.
  ;; Your init file should contain only one such instance.
  ;; If there is more than one, they won't work right.
- '(custom-enabled-themes (quote (tango-dark)))
  '(ns-alternate-modifier (quote super))
  '(ns-command-modifier (quote meta))
  '(package-selected-packages
    (quote
-    (company-flx go-mode use-package-chords yaml-mode delight diminish move-lines crux rainbow-mode which-key parinfer parinfer-mode move-text flx counsel ido-vertical-mode smex flx-ido expand-region multiple-cursors company-terraform terraform-mode company swiper wgrep ag projectile magit use-package)))
+    (request doom-modeline doom-themes company-flx go-mode use-package-chords yaml-mode delight diminish move-lines crux rainbow-mode which-key parinfer parinfer-mode move-text flx counsel ido-vertical-mode smex flx-ido expand-region multiple-cursors company-terraform terraform-mode company swiper wgrep ag projectile magit use-package)))
  '(swiper-goto-start-of-match t))
 
 (custom-set-faces

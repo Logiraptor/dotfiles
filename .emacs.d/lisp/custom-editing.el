@@ -1,6 +1,5 @@
 
 (use-package company
-  :diminish
   :config
   (use-package company-flx
     :config
