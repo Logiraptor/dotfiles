@@ -35,6 +35,10 @@
   ("C-c p" . projectile-command-map)
   :chords (("pk" . projectile-command-map)))
 
+(use-package counsel-projectile
+  :config
+  (counsel-projectile-mode))
+
 (use-package swiper
   :config
   (setq swiper-goto-start-of-match t)
