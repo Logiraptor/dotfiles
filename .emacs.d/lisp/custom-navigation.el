@@ -17,7 +17,8 @@
   :bind (("C-c C-r" . 'ivy-resume))
   :config
   (setq ivy-use-virtual-buffers t)
-  (setq ivy-re-builders-alist '((t . ivy--regex-fuzzy)))
+  (setq ivy-re-builders-alist '((swiper . ivy--regex-plus)
+                                (t . ivy--regex-fuzzy)))
   (setq ivy-initial-inputs-alist nil)
   (ivy-mode)
   (counsel-mode))
