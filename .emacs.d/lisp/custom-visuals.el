@@ -18,3 +18,17 @@
 
 
 
+
+(defun oyarzun/project-tree ()
+    "Emulate intellij project-tree hide/show"
+    (interactive)
+    (if (eq (selected-window) (neo-global--get-window))
+        (neotree-hide)
+        (neotree-projectile-action)))
+
+(use-package neotree
+  :bind (("M-1" . 'oyarzun/project-tree))
+  :config
+  (setq neo-theme (if (display-graphic-p) 'icons 'arrow)))
+
+
