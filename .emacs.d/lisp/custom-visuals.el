@@ -34,33 +34,36 @@
 
 (add-to-list 'display-buffer-alist
      '("*eshell-panel" (display-buffer-in-side-window) (side . bottom)))
-(add-to-list 'display-buffer-alist
-     '("*term-panel" (display-buffer-in-side-window) (side . bottom)))
 
+(add-to-list 'display-buffer-alist
+     '("*open-files" (display-buffer-in-side-window) (side . bottom)))
+
+
+(defun oyarzun/define-panel (name panel-ctor)
+   (let ((buf (get-buffer name)))
+      (if buf
+          (if (eq (selected-window) (get-buffer-window buf))
+              (delete-window)
+              (pop-to-buffer buf))
+          (progn
+              (let (new-buf (get-buffer-create name))
+                   (eval panel-ctor))))))
+
+;; TODO: this should stay up to date as buffer lists changes
+;; TODO: this should open in bottom window to start
+(defun oyarzun/open-file-panel ()
+  "Emulate intellij panel hide/show for open files"
+  (interactive)
+  (oyarzun/define-panel "*open-files*" '(progn (buffer-menu) (Buffer-menu-toggle-files-only) (rename-buffer "*open-files*"))))
+
+(bind-key "M-3" 'oyarzun/open-file-panel)
 
 (defun oyarzun/eshell-panel ()
   "Emulate intellij panel hide/show for eshell"
   (interactive)
-  (if (ignore-errors eshell-panel-buffer)
-      (if (eq (selected-window) (get-buffer-window eshell-panel-buffer))
-          (delete-window)
-          (pop-to-buffer eshell-panel-buffer))
-      (setq eshell-panel-buffer
-        (let ((eshell-buffer-name "*eshell-panel*"))
-          (eshell)))))
-
-(defun oyarzun/term-panel ()
-  "Emulate intellij panel hide/show for eshell"
-  (interactive)
-  (if (ignore-errors term-panel-buffer)
-      (if (eq (selected-window) (get-buffer-window term-panel-buffer))
-          (delete-window)
-          (pop-to-buffer term-panel-buffer))
-      (setq term-panel-buffer
-        (ansi-term "/bin/bash" "*term-panel*"))))
-
+  (oyarzun/define-panel "*eshell-panel*" '(let ((eshell-buffer-name "*eshell-panel*")) (eshell))))
 
 (bind-key "M-2" 'oyarzun/eshell-panel)
-(bind-key "M-3" 'oyarzun/term-panel)
 
 
+;; TODO: Split side windows into more modular panels
