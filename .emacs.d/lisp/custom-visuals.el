@@ -14,9 +14,7 @@
 (use-package doom-modeline
   :hook (after-init . doom-modeline-mode)
   :config
-  (setq doom-modeline-buffer-file-name-style 'relative-from-project))
-
-
+  (setq doom-modeline-buffer-file-name-style 'file-name))
 
 
 (defun oyarzun/project-tree ()

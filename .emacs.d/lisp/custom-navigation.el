@@ -27,6 +27,7 @@
   :delight '(:eval (concat " ~:" (projectile-project-name)))
   :config
   (projectile-global-mode)
+  (setq projectile-file-exists-remote-cache-expire nil)
   (setq projectile-completion-system 'ivy)
   (setq projectile-sort-order 'recently-active)
   (setq projectile-enable-caching t)
@@ -45,3 +46,5 @@
   (setq swiper-goto-start-of-match t)
   :bind  (("\C-s" . 'swiper)))
 
+(use-package ace-window
+  :bind (("M-o" . 'ace-window)))
