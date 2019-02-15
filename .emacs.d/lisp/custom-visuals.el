@@ -36,32 +36,34 @@
 (add-to-list 'display-buffer-alist
      '("*open-files" (display-buffer-in-side-window) (side . bottom)))
 
-
-(defun oyarzun/define-panel (name panel-ctor)
+(defun oyarzun/define-panel (name panel-ctor options)
    (let ((buf (get-buffer name)))
       (if buf
           (if (eq (selected-window) (get-buffer-window buf))
               (delete-window)
               (pop-to-buffer buf))
           (progn
-              (let (new-buf (get-buffer-create name))
-                   (eval panel-ctor))))))
+            (save-window-excursion
+              (funcall panel-ctor)
+              (display-buffer-in-side-window (current-buffer) options)
+              (rename-buffer name))
+            (pop-to-buffer name)))))
 
 ;; TODO: this should stay up to date as buffer lists changes
-;; TODO: this should open in bottom window to start
 (defun oyarzun/open-file-panel ()
   "Emulate intellij panel hide/show for open files"
   (interactive)
-  (oyarzun/define-panel "*open-files*" '(progn (buffer-menu) (Buffer-menu-toggle-files-only) (rename-buffer "*open-files*"))))
+  (oyarzun/define-panel "*open-files*" (lambda () (buffer-menu) (Buffer-menu-toggle-files-only 1)) '((side . bottom) (slot . 1))))
 
 (bind-key "M-3" 'oyarzun/open-file-panel)
 
 (defun oyarzun/eshell-panel ()
   "Emulate intellij panel hide/show for eshell"
   (interactive)
-  (oyarzun/define-panel "*eshell-panel*" '(let ((eshell-buffer-name "*eshell-panel*")) (eshell))))
+  (oyarzun/define-panel "*eshell-panel*" (lambda () (let ((eshell-buffer-name "*eshell-panel*")) (eshell))) '((side . bottom) (slot . -1))))
 
 (bind-key "M-2" 'oyarzun/eshell-panel)
 
+(show-paren-mode)
 
 ;; TODO: Split side windows into more modular panels
