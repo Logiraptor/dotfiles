@@ -128,3 +128,11 @@ export NVM_DIR="$HOME/.nvm"
 export PATH="$HOME/.cabal/bin:/opt/cabal/1.22/bin:/opt/ghc/7.10.3/bin:$PATH"
 
 export EDITOR="/usr/bin/code --wait"
+
+#THIS MUST BE AT THE END OF THE FILE FOR SDKMAN TO WORK!!!
+export SDKMAN_DIR="/home/patrick/.sdkman"
+[[ -s "/home/patrick/.sdkman/bin/sdkman-init.sh" ]] && source "/home/patrick/.sdkman/bin/sdkman-init.sh"
+
+complete -C /home/patrick/bin/mc mc
+
+ssh-add ~/.ssh/id_rsa
