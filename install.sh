@@ -30,6 +30,8 @@ esac
 echo "Installing dotfiles for ${machine}"
 
 function installLinux {
+    git submodule init
+    git submodule update
     link ./.bashrc ~/.bashrc
     link ./.bash_aliases ~/.aliases
     link ./.profile ~/.profile
@@ -50,10 +52,12 @@ function installLinux {
 }
 
 function installMac {
-    link ./.zshrc ~/.zshrc    
+    git submodule init
+    git submodule update
+    link ./.zshrc ~/.zshrc
     link ./mac.bash_aliases ~/.aliases
     link ./.emacs.d/ ~/.emacs.d/
-    
+
     mkdir -p ~/tasks
     link ./t.py ~/tasks/t.py
     link ./.gitconfig ~/.gitconfig
