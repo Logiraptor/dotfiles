@@ -34,6 +34,7 @@ function installLinux {
     link ./.bash_aliases ~/.aliases
     link ./.profile ~/.profile
     link ./.emacs.d/ ~/.emacs.d/
+    link ./.spacemacs ~/.spacemacs
 
     link ./i3 ~/.config/i3
     link ./i3status ~/.config/i3status
