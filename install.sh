@@ -57,6 +57,7 @@ function installMac {
     link ./.zshrc ~/.zshrc
     link ./mac.bash_aliases ~/.aliases
     link ./.emacs.d/ ~/.emacs.d/
+    link ./.spacemacs ~/.spacemacs
 
     mkdir -p ~/tasks
     link ./t.py ~/tasks/t.py
