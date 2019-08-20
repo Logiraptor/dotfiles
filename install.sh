@@ -33,38 +33,29 @@ esac
 
 echo "Installing dotfiles for ${machine}"
 
+function installSpaceMacs {
+    git clone -b develop git@github.com:syl20bnr/spacemacs ~/.emacs.d
+    link ./.spacemacs ~/.spacemacs
+}
+
 function installLinux {
-    git submodule init
-    git submodule update
+    installSpaceMacs
     link ./.bashrc ~/.bashrc
     link ./.bash_aliases ~/.aliases
     link ./.profile ~/.profile
-    link ./.emacs.d/ ~/.emacs.d/
-    link ./.spacemacs ~/.spacemacs
 
     link ./i3 ~/.config/i3
     link ./i3status ~/.config/i3status
     link ./compton.conf ~/.config/compton.conf
 
     link ./.gitconfig ~/.gitconfig
-
-    link ./brightness.sh ~/bin/brightness.sh
-    link ./t.py ~/tasks/t.py
-
-    sudo cp ./brightness-sudoer /etc/sudoers.d/brightness
-    sudo cp ./upspin.service /etc/systemd/system/upspin.service
 }
 
 function installMac {
-    git submodule init
-    git submodule update
+    installSpaceMacs
     link ./.zshrc ~/.zshrc
     link ./mac.bash_aliases ~/.aliases
-    link ./.emacs.d/ ~/.emacs.d/
-    link ./.spacemacs ~/.spacemacs
 
-    mkdir -p ~/tasks
-    link ./t.py ~/tasks/t.py
     link ./.gitconfig ~/.gitconfig
 
     brew install wallpaper
