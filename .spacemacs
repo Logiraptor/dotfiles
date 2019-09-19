@@ -41,12 +41,13 @@ values."
      markdown
      yaml
      terraform
+     ranger
      ;; ----------------------------------------------------------------
      ;; Example of useful layers you may want to use right away.
      ;; Uncomment some layer names and press <SPC f e R> (Vim style) or
      ;; <M-m f e R> (Emacs style) to install them.
      ;; ----------------------------------------------------------------
-     ivy
+     (ivy :variables ivy-enable-advanced-buffer-information t)
      auto-completion
      ;; better-defaults
      emacs-lisp
@@ -65,7 +66,11 @@ values."
    ;; wrapped in a layer. If you need some configuration for these
    ;; packages, then consider creating a layer. You can also put the
    ;; configuration in `dotspacemacs/user-config'.
-   dotspacemacs-additional-packages '()
+   dotspacemacs-additional-packages
+   '(
+     (term-cursor :location (recipe :fetcher github :repo "h0d/term-cursor.el" ))
+     beacon
+     )
    ;; A list of packages that cannot be updated.
    dotspacemacs-frozen-packages '()
    ;; A list of packages that will not be installed and loaded.
@@ -329,6 +334,8 @@ you should place your code here."
   (setenv "PATH" (concat (getenv "PATH") ":/home/patrick/bin"))
   (setenv "PATH" (concat (getenv "PATH") ":/usr/local/go/bin"))
   (setenv "PATH" (concat (getenv "PATH") ":/home/patrick/dev/bin"))
+  (term-cursor-mode)
+  (beacon-mode 1)
   )
 
 (defun dotspacemacs/emacs-custom-settings ()
