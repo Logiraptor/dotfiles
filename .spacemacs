@@ -335,6 +335,8 @@ you should place your code here."
   (setenv "PATH" (concat (getenv "PATH") ":/usr/local/go/bin"))
   (setenv "PATH" (concat (getenv "PATH") ":/home/patrick/dev/bin"))
   (term-cursor-mode)
+  (with-eval-after-load 'terraform-mode
+    (add-hook 'terraform-mode-hook #'terraform-format-on-save-mode))
   (beacon-mode 1)
   )
 
