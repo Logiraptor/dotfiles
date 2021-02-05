@@ -1,6 +1,6 @@
 [user]
 	name = Patrick Oyarzun
-	email = patrickoyarzun@gmail.com
+	email = poyarzun@pivotal.io
 [push]
 	default = simple
 [alias]
@@ -11,3 +11,24 @@
 	br = branch
 [core]
 	autocrlf = input
+[filter "lfs"]
+	required = true
+	clean = git-lfs clean -- %f
+	smudge = git-lfs smudge -- %f
+	process = git-lfs filter-process
+[include]
+	path = /Users/patrickoyarzun/.git-together
+[git-together]
+	active = po
+[git-together "user"]
+	name = Patrick Oyarzun
+	email = poyarzun@pivotal.io
+[commit]
+	template = ~/.git-author-template
+
+[merge]
+	conflictstyle = diff3
+
+
+[url "ssh://git@github.com/"]
+	insteadOf = https://github.com/
