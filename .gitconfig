@@ -1,6 +1,7 @@
 [user]
 	name = Patrick Oyarzun
-	email = poyarzun@pivotal.io
+	email = poyarzun@vmware.com
+	signingkey = F8BCEBF24552F70E
 [push]
 	default = simple
 [alias]
@@ -25,6 +26,7 @@
 	email = poyarzun@pivotal.io
 [commit]
 	template = ~/.git-author-template
+	gpgsign = true
 
 [merge]
 	conflictstyle = diff3
