@@ -569,6 +569,8 @@ This function is called at the very end of Spacemacs startup, after layer
 configuration.
 Put your configuration code here, except for variables that should be set
 before packages are loaded."
+  (put 'command-history 'history-length 100)
+
   (define-key evil-normal-state-map (kbd "M-j") 'drag-stuff-down)
   (define-key evil-normal-state-map (kbd "M-k") 'drag-stuff-up)
   (require 'tramp)
@@ -683,6 +685,7 @@ This function is called at the very end of Spacemacs initialization."
  '(evil-want-Y-yank-to-eol nil)
  '(evil-want-minibuffer t)
  '(grep-find-template "ag --nogroup <R>")
+ '(history-delete-duplicates t)
  '(hl-todo-keyword-faces
    '(("TODO" . "#dc752f")
      ("NEXT" . "#dc752f")
