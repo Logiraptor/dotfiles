@@ -1,7 +1,7 @@
 [user]
 	name = Patrick Oyarzun
-	email = poyarzun@vmware.com
-	signingkey = F8BCEBF24552F70E
+	email = patrick.oyarzun@grafana.com
+	signingkey = 44B349E67EC0257A
 [push]
 	default = simple
 [alias]
@@ -17,20 +17,11 @@
 	clean = git-lfs clean -- %f
 	smudge = git-lfs smudge -- %f
 	process = git-lfs filter-process
-[include]
-	path = /Users/patrickoyarzun/.git-together
-[git-together]
-	active = po
-[git-together "user"]
-	name = Patrick Oyarzun
-	email = poyarzun@pivotal.io
 [commit]
-	template = ~/.git-author-template
 	gpgsign = true
 
 [merge]
 	conflictstyle = diff3
-
 
 [url "ssh://git@github.com/"]
 	insteadOf = https://github.com/
